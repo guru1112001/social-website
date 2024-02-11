@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'social_django',
     'django_extensions',
     'images',
+    'easy_thumbnails',
     
 ]
 
@@ -130,7 +131,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL='dashboard'
 LOGIN_URL='login'
 LOGOUT_URL='logout'
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -159,4 +162,4 @@ SOCIAL_AUTH_PIPELINE = [
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
- ]
+]
