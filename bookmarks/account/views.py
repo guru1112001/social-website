@@ -37,17 +37,17 @@ def user_login(request):
 def dashboard(request):
     # Display all actions by default
     actions = Action.objects.exclude(user=request.user)
-    print("Initial actions:", actions)  # Debug statement
+    # print("Initial actions:", actions)  # Debug statement
     following_ids = request.user.following.values_list('id', flat=True)
-    print(request.user.following.values_list)
-    print("Following IDs:", following_ids)  # Debug statement
+    # print(request.user.following.values_list)
+    # print("Following IDs:", following_ids)  # Debug statement
     if following_ids:
         # If user is following others, retrieve only their actions
         actions = actions.filter(user_id__in=following_ids)
-        print("Filtered actions:", actions)  # Debug statement
+        # print("Filtered actions:", actions)  # Debug statement
     actions = actions.select_related('user', 'user__profile')\
                      .prefetch_related('target')[:10]
-    print("Final actions:", actions)  # Debug statement
+    # print("Final actions:", actions)  # Debug statement
     return render(request,
                   'account/dashboard.html',
                   {'section': 'dashboard',
