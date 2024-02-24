@@ -5,5 +5,8 @@ from .models import Image
 
 @receiver(m2m_changed, sender=Image.users_like.through)
 def users_like_changed(sender, instance, **kwargs):
+    print("Signal triggered: users_like_changed")
     instance.total_likes = instance.users_like.count()
+    print("Total likes before save:", instance.total_likes)
     instance.save()
+    print("Total likes after save:", instance.total_likes)
