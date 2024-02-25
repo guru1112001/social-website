@@ -11,3 +11,10 @@ class ImageAdmin(admin.ModelAdmin):
         queryset = super().get_queryset(request)
         queryset = queryset.annotate(total_likes_count=Count('users_like'))
         return queryset
+    
+    def display_total_likes(self, obj):
+        return obj.total_likes
+    display_total_likes.short_description = 'Total Likes'
+
+
+# admin.site.register(Image, ImageAdmin)
